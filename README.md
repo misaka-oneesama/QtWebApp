@@ -14,7 +14,7 @@ Fork of [**QtWebApp**](http://stefanfrings.de/qtwebapp/index-en.html) by [Stefan
 
 ## How to use
 
-Only `qmake` is supported right now. There are not plans to add CMake support yet, but that may change in the future :)
+Only `qmake` is supported right now. There are no plans to add CMake support yet, but that may change in the future :)
 
 There are 4 components
 
@@ -29,6 +29,6 @@ include(QtWebApp/{component}/{component}.pri)
 ```
 Include paths are setup accordingly and you can start developing instantly. Simple huh?
 
-#### Notice regarding [御坂ーお姉さま](https://https://github.com/misaka-oneesama/misaka-oneesama)
+#### Notice regarding [御坂ーお姉さま](https://github.com/misaka-oneesama/misaka-oneesama)
 
 Report bugs against this repository only if you are sure it's QtWepApp's fault.
