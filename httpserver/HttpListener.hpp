@@ -1,13 +1,9 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
-#ifndef HTTPLISTENER_H
-#define HTTPLISTENER_H
+#ifndef HTTPLISTENER_HPP
+#define HTTPLISTENER_HPP
 
 #include <QTcpServer>
 #include <QBasicTimer>
+
 #include "HttpGlobal.hpp"
 #include "HttpConnectionHandler.hpp"
 #include "HttpConnectionHandlerPool.hpp"
@@ -41,9 +37,11 @@ namespace stefanfrings {
   @see HttpRequest for description of config settings maxRequestSize and maxMultiPartSize
 */
 
-class DECLSPEC HttpListener : public QTcpServer {
+class DECLSPEC HttpListener : public QTcpServer
+{
     Q_OBJECT
     Q_DISABLE_COPY(HttpListener)
+
 public:
 
     /**
@@ -54,7 +52,7 @@ public:
       @param parent Parent object.
       @warning Ensure to close or delete the listener before deleting the request handler.
     */
-    HttpListener(HttpServerSettings *settings, HttpRequestHandler* requestHandler, QObject* parent = NULL);
+    HttpListener(HttpServerSettings *settings, HttpRequestHandler *requestHandler, QObject *parent = nullptr);
 
     /** Destructor */
     virtual ~HttpListener();
@@ -80,10 +78,10 @@ private:
     HttpServerSettings *settings = nullptr;
 
     /** Point to the reuqest handler which processes all HTTP requests */
-    HttpRequestHandler* requestHandler;
+    HttpRequestHandler *requestHandler = nullptr;
 
     /** Pool of connection handlers */
-    HttpConnectionHandlerPool* pool;
+    HttpConnectionHandlerPool *pool = nullptr;
 
 signals:
 
@@ -98,4 +96,4 @@ signals:
 
 } // end of namespace
 
-#endif // HTTPLISTENER_H
+#endif // HTTPLISTENER_HPP

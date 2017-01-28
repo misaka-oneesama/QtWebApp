@@ -9,12 +9,12 @@ CONFIG (debug, debug|release) {
 }
 
 HEADERS += $$PWD/HttpGlobal.hpp \
-           $$PWD/httplistener.h \
+           $$PWD/HttpListener.hpp \
            $$PWD/HttpServerSettings.hpp \
            $$PWD/HttpConnectionHandler.hpp \
            $$PWD/HttpConnectionHandlerPool.hpp \
-           $$PWD/httprequest.h \
-           $$PWD/httpresponse.h \
+           $$PWD/HttpRequest.hpp \
+           $$PWD/HttpResponse.hpp \
            $$PWD/httpcookie.h \
            $$PWD/httprequesthandler.h \
            $$PWD/httpsession.h \
@@ -22,11 +22,11 @@ HEADERS += $$PWD/HttpGlobal.hpp \
            $$PWD/staticfilecontroller.h
 
 SOURCES += $$PWD/HttpGlobal.cpp \
-           $$PWD/httplistener.cpp \
+           $$PWD/HttpListener.cpp \
            $$PWD/HttpConnectionHandler.cpp \
            $$PWD/HttpConnectionHandlerPool.cpp \
-           $$PWD/httprequest.cpp \
-           $$PWD/httpresponse.cpp \
+           $$PWD/HttpRequest.cpp \
+           $$PWD/HttpResponse.cpp \
            $$PWD/httpcookie.cpp \
            $$PWD/httprequesthandler.cpp \
            $$PWD/httpsession.cpp \

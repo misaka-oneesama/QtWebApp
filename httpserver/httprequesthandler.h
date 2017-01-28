@@ -7,8 +7,8 @@
 #define HTTPREQUESTHANDLER_H
 
 #include "HttpGlobal.hpp"
-#include "httprequest.h"
-#include "httpresponse.h"
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 
 namespace stefanfrings {
 

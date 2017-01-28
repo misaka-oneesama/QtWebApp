@@ -20,7 +20,7 @@ There are 4 components
 
  - `httpserver` ─ the actual server and tcp socket listener
  - `templateengine` ─ HTML templatizer (shares some similarities with Handlebars?)
- - `logging` ─ file logger (may be removed from the fork as there is no use case for it, there are better loggers out there)
+ - `logging` ─ multithreaded non-blocking file logger (thread-safe)
  - `qtservice` ─ UNIX daemon and Windows Service wrapper to send app in the background
 
 To include a component to your project add this to your `.pro` file.
@@ -28,6 +28,13 @@ To include a component to your project add this to your `.pro` file.
 include(QtWebApp/{component}/{component}.pri)
 ```
 Include paths are setup accordingly and you can start developing instantly. Simple huh?
+
+## Planned Features
+
+ - User-Agent parser (`httpserver`) <br>
+   Easily check against platforms and browsers without using regular expressions against the `User-Agent` HTTP header. <br>
+   For now use `request.getHeader("user-agent")` to obtain the client sent user agent.
+
 
 <br>
 <br>

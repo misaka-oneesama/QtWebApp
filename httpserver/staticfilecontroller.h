@@ -10,8 +10,8 @@
 #include <QMutex>
 #include <QSettings>
 #include "HttpGlobal.hpp"
-#include "httprequest.h"
-#include "httpresponse.h"
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 #include "httprequesthandler.h"
 
 namespace stefanfrings {

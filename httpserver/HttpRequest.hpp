@@ -1,10 +1,5 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
-#ifndef HTTPREQUEST_H
-#define HTTPREQUEST_H
+#ifndef HTTPREQUEST_HPP
+#define HTTPREQUEST_HPP
 
 #include <QByteArray>
 #include <QHostAddress>
@@ -13,6 +8,7 @@
 #include <QMultiMap>
 #include <QTemporaryFile>
 #include <QUuid>
+
 #include "HttpGlobal.hpp"
 #include "HttpServerSettings.hpp"
 
@@ -35,14 +31,21 @@ namespace stefanfrings {
   The body is always a little larger than the file itself.
 */
 
-class DECLSPEC HttpRequest {
+class DECLSPEC HttpRequest
+{
     Q_DISABLE_COPY(HttpRequest)
     friend class HttpSessionStore;
 
 public:
 
     /** Values for getStatus() */
-    enum RequestStatus {waitForRequest, waitForHeader, waitForBody, complete, abort};
+    enum RequestStatus : quint8 {
+        WaitForRequest = 0,
+        WaitForHeader,
+        WaitForBody,
+        Complete,
+        Abort
+    };
 
     /**
       Constructor.
@@ -61,7 +64,7 @@ public:
       until the status is RequestStatus::complete or RequestStatus::abort.
       @param socket Source of the data
     */
-    void readFromSocket(QTcpSocket* socket);
+    void readFromSocket(QTcpSocket *socket);
 
     /**
       Get the status of this reqeust.
@@ -72,13 +75,13 @@ public:
     /** Get the method of the HTTP request  (e.g. "GET") */
     QByteArray getMethod() const;
 
-    /** Get the decoded path of the HTPP request (e.g. "/index.html") */
+    /** Get the decoded path of the HTTP request (e.g. "/index.html") */
     QByteArray getPath() const;
 
     /** Get the raw path of the HTTP request (e.g. "/file%20with%20spaces.html") */
-    const QByteArray& getRawPath() const;
+    const QByteArray &getRawPath() const;
 
-    /** Get the version of the HTPP request (e.g. "HTTP/1.1") */
+    /** Get the version of the HTTP request (e.g. "HTTP/1.1") */
     QByteArray getVersion() const;
 
     /**
@@ -87,19 +90,19 @@ public:
       @return If the header occurs multiple times, only the last
       one is returned.
     */
-    QByteArray getHeader(const QByteArray& name) const;
+    QByteArray getHeader(const QByteArray &name) const;
 
     /**
       Get the values of a HTTP request header.
       @param name Name of the header, not case-senitive.
     */
-    QList<QByteArray> getHeaders(const QByteArray& name) const;
+    QList<QByteArray> getHeaders(const QByteArray &name) const;
 
     /**
      * Get all HTTP request headers. Note that the header names
      * are returned in lower-case.
      */
-    QMultiMap<QByteArray,QByteArray> getHeaderMap() const;
+    QMultiMap<QByteArray, QByteArray> getHeaderMap() const;
 
     /**
       Get the value of a HTTP request parameter.
@@ -107,16 +110,16 @@ public:
       @return If the parameter occurs multiple times, only the last
       one is returned.
     */
-    QByteArray getParameter(const QByteArray& name) const;
+    QByteArray getParameter(const QByteArray &name) const;
 
     /**
       Get the values of a HTTP request parameter.
       @param name Name of the parameter, case-sensitive.
     */
-    QList<QByteArray> getParameters(const QByteArray& name) const;
+    QList<QByteArray> getParameters(const QByteArray &name) const;
 
     /** Get all HTTP request parameters. */
-    QMultiMap<QByteArray,QByteArray> getParameterMap() const;
+    QMultiMap<QByteArray, QByteArray> getParameterMap() const;
 
     /** Get the HTTP request body.  */
     QByteArray getBody() const;
@@ -127,7 +130,7 @@ public:
       @param source The url encoded strings
       @see QUrl::toPercentEncoding for the reverse direction
     */
-    static QByteArray urlDecode(const QByteArray source);
+    static QByteArray urlDecode(const QByteArray &source);
 
     /**
       Get an uploaded file. The file is already open. It will
@@ -137,16 +140,16 @@ public:
       For uploaded files, the method getParameters() returns
       the original fileName as provided by the calling web browser.
     */
-    QTemporaryFile* getUploadedFile(const QByteArray fieldName) const;
+    QTemporaryFile *getUploadedFile(const QByteArray &fieldName) const;
 
     /**
       Get the value of a cookie.
       @param name Name of the cookie
     */
-    QByteArray getCookie(const QByteArray& name) const;
+    QByteArray getCookie(const QByteArray &name) const;
 
     /** Get all cookies. */
-    QMap<QByteArray,QByteArray>& getCookieMap();
+    QMap<QByteArray, QByteArray> &getCookieMap();
 
     /**
       Get the address of the connected client.
@@ -158,16 +161,16 @@ public:
 private:
 
     /** Request headers */
-    QMultiMap<QByteArray,QByteArray> headers;
+    QMultiMap<QByteArray, QByteArray> headers;
 
     /** Parameters of the request */
-    QMultiMap<QByteArray,QByteArray> parameters;
+    QMultiMap<QByteArray, QByteArray> parameters;
 
     /** Uploaded files of the request, key is the field name. */
-    QMap<QByteArray,QTemporaryFile*> uploadedFiles;
+    QMap<QByteArray, QTemporaryFile*> uploadedFiles;
 
     /** Received cookies */
-    QMap<QByteArray,QByteArray> cookies;
+    QMap<QByteArray, QByteArray> cookies;
 
     /** Storage for raw body data */
     QByteArray bodyData;
@@ -209,19 +212,19 @@ private:
     QByteArray boundary;
 
     /** Temp file, that is used to store the multipart/form-data body */
-    QTemporaryFile* tempFile;
+    QTemporaryFile *tempFile = nullptr;
 
     /** Parse the multipart body, that has been stored in the temp file. */
     void parseMultiPartFile();
 
     /** Sub-procedure of readFromSocket(), read the first line of a request. */
-    void readRequest(QTcpSocket* socket);
+    void readRequest(QTcpSocket *socket);
 
     /** Sub-procedure of readFromSocket(), read header lines. */
-    void readHeader(QTcpSocket* socket);
+    void readHeader(QTcpSocket *socket);
 
     /** Sub-procedure of readFromSocket(), read the request body. */
-    void readBody(QTcpSocket* socket);
+    void readBody(QTcpSocket *socket);
 
     /** Sub-procedure of readFromSocket(), extract and decode request parameters. */
     void decodeRequestParams();
@@ -236,4 +239,4 @@ private:
 
 } // end of namespace
 
-#endif // HTTPREQUEST_H
+#endif // HTTPREQUEST_HPP

@@ -1,5 +1,5 @@
 #include "HttpConnectionHandler.hpp"
-#include "httpresponse.h"
+#include "HttpResponse.hpp"
 
 using namespace stefanfrings;
 
@@ -157,11 +157,11 @@ void HttpConnectionHandler::read()
 
         // Collect data for the request object
         while (this->socket->bytesAvailable() &&
-               this->currentRequest->getStatus() != HttpRequest::complete &&
-               this->currentRequest->getStatus() != HttpRequest::abort)
+               this->currentRequest->getStatus() != HttpRequest::Complete &&
+               this->currentRequest->getStatus() != HttpRequest::Abort)
         {
             this->currentRequest->readFromSocket(this->socket);
-            if (this->currentRequest->getStatus() == HttpRequest::waitForBody)
+            if (this->currentRequest->getStatus() == HttpRequest::WaitForBody)
             {
                 // Restart timer for read timeout, otherwise it would
                 // expire during large file uploads.
@@ -170,7 +170,7 @@ void HttpConnectionHandler::read()
         }
 
         // If the request is aborted, return error message and close the connection
-        if (this->currentRequest->getStatus() == HttpRequest::abort)
+        if (this->currentRequest->getStatus() == HttpRequest::Abort)
         {
             this->socket->write("HTTP/1.1 413 Entity Too Large\nConnection: close\n\n413 Entity Too Large\n");
             this->socket->flush();
@@ -181,7 +181,7 @@ void HttpConnectionHandler::read()
         }
 
         // If the request is complete, let the request mapper dispatch it
-        if (this->currentRequest->getStatus() == HttpRequest::complete)
+        if (this->currentRequest->getStatus() == HttpRequest::Complete)
         {
             this->readTimer.stop();
             qDebug("HttpConnectionHandler (%p): received request",this);

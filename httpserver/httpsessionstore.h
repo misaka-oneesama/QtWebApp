@@ -13,8 +13,8 @@
 #include <QMutex>
 #include "HttpGlobal.hpp"
 #include "httpsession.h"
-#include "httpresponse.h"
-#include "httprequest.h"
+#include "HttpResponse.hpp"
+#include "HttpRequest.hpp"
 
 namespace stefanfrings {
 

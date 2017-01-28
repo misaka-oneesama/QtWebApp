@@ -1,5 +1,5 @@
-#ifndef HTTPCONNECTIONHANDLER_H
-#define HTTPCONNECTIONHANDLER_H
+#ifndef HTTPCONNECTIONHANDLER_HPP
+#define HTTPCONNECTIONHANDLER_HPP
 
 #ifndef QT_NO_OPENSSL
    #include <QSslConfiguration>
@@ -9,7 +9,7 @@
 #include <QTimer>
 #include <QThread>
 #include "HttpGlobal.hpp"
-#include "httprequest.h"
+#include "HttpRequest.hpp"
 #include "httprequesthandler.h"
 #include "HttpServerSettings.hpp"
 
@@ -118,4 +118,4 @@ private slots:
 
 } // end of namespace
 
-#endif // HTTPCONNECTIONHANDLER_H
+#endif // HTTPCONNECTIONHANDLER_HPP
