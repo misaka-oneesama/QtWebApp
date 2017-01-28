@@ -13,8 +13,8 @@
 #include <QMultiMap>
 #include <QTemporaryFile>
 #include <QUuid>
-#include "httpglobal.h"
-#include "httplistenersettings.h"
+#include "HttpGlobal.hpp"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
@@ -48,7 +48,7 @@ public:
       Constructor.
       @param settings Configuration settings
     */
-    HttpRequest(const HttpListenerSettings &settings);
+    HttpRequest(HttpServerSettings *settings);
 
     /**
       Destructor.

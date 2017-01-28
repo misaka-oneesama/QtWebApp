@@ -11,7 +11,7 @@
 #include <QMap>
 #include <QTimer>
 #include <QMutex>
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 #include "httpsession.h"
 #include "httpresponse.h"
 #include "httprequest.h"

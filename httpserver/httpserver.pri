@@ -4,15 +4,15 @@ DEPENDPATH += $$PWD
 QT += network
 
 # Enable very detailed debug messages when compiling the debug version
-CONFIG(debug, debug|release) {
+CONFIG (debug, debug|release) {
     DEFINES += SUPERVERBOSE
 }
 
-HEADERS += $$PWD/httpglobal.h \
+HEADERS += $$PWD/HttpGlobal.hpp \
            $$PWD/httplistener.h \
-           $$PWD/httplistenersettings.h \
-           $$PWD/httpconnectionhandler.h \
-           $$PWD/httpconnectionhandlerpool.h \
+           $$PWD/HttpServerSettings.hpp \
+           $$PWD/HttpConnectionHandler.hpp \
+           $$PWD/HttpConnectionHandlerPool.hpp \
            $$PWD/httprequest.h \
            $$PWD/httpresponse.h \
            $$PWD/httpcookie.h \
@@ -21,10 +21,10 @@ HEADERS += $$PWD/httpglobal.h \
            $$PWD/httpsessionstore.h \
            $$PWD/staticfilecontroller.h
 
-SOURCES += $$PWD/httpglobal.cpp \
+SOURCES += $$PWD/HttpGlobal.cpp \
            $$PWD/httplistener.cpp \
-           $$PWD/httpconnectionhandler.cpp \
-           $$PWD/httpconnectionhandlerpool.cpp \
+           $$PWD/HttpConnectionHandler.cpp \
+           $$PWD/HttpConnectionHandlerPool.cpp \
            $$PWD/httprequest.cpp \
            $$PWD/httpresponse.cpp \
            $$PWD/httpcookie.cpp \

@@ -4,7 +4,7 @@
 #include <QtGlobal>
 #include <QString>
 
-struct HttpListenerSettings
+struct HttpServerSettings
 {
     QLatin1String host;
     quint16 port;

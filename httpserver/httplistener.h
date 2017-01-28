@@ -8,11 +8,11 @@
 
 #include <QTcpServer>
 #include <QBasicTimer>
-#include "httpglobal.h"
-#include "httpconnectionhandler.h"
-#include "httpconnectionhandlerpool.h"
+#include "HttpGlobal.hpp"
+#include "HttpConnectionHandler.hpp"
+#include "HttpConnectionHandlerPool.hpp"
 #include "httprequesthandler.h"
-#include "httplistenersettings.h"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
@@ -54,7 +54,7 @@ public:
       @param parent Parent object.
       @warning Ensure to close or delete the listener before deleting the request handler.
     */
-    HttpListener(const HttpListenerSettings &settings, HttpRequestHandler* requestHandler, QObject* parent = NULL);
+    HttpListener(HttpServerSettings *settings, HttpRequestHandler* requestHandler, QObject* parent = NULL);
 
     /** Destructor */
     virtual ~HttpListener();
@@ -77,7 +77,7 @@ protected:
 
 private:
 
-    HttpListenerSettings settings;
+    HttpServerSettings *settings = nullptr;
 
     /** Point to the reuqest handler which processes all HTTP requests */
     HttpRequestHandler* requestHandler;

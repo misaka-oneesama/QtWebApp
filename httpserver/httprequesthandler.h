@@ -6,7 +6,7 @@
 #ifndef HTTPREQUESTHANDLER_H
 #define HTTPREQUESTHANDLER_H
 
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 #include "httprequest.h"
 #include "httpresponse.h"
 

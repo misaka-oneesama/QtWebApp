@@ -4,13 +4,13 @@
 */
 
 #include "httplistener.h"
-#include "httpconnectionhandler.h"
-#include "httpconnectionhandlerpool.h"
+#include "HttpConnectionHandler.hpp"
+#include "HttpConnectionHandlerPool.hpp"
 #include <QCoreApplication>
 
 using namespace stefanfrings;
 
-HttpListener::HttpListener(const HttpListenerSettings &settings, HttpRequestHandler* requestHandler, QObject *parent)
+HttpListener::HttpListener(HttpServerSettings *settings, HttpRequestHandler* requestHandler, QObject *parent)
     : QTcpServer(parent)
 {
     Q_ASSERT(requestHandler!=0);
@@ -37,8 +37,8 @@ void HttpListener::listen()
     {
         pool=new HttpConnectionHandlerPool(settings,requestHandler);
     }
-    QString host = settings.host;
-    int port=settings.port;
+    QString host = settings->host;
+    int port=settings->port;
     QTcpServer::listen(host.isEmpty() ? QHostAddress::Any : QHostAddress(host), port);
     if (!isListening())
     {

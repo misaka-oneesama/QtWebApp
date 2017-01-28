@@ -10,13 +10,13 @@
 
 using namespace stefanfrings;
 
-HttpRequest::HttpRequest(const HttpListenerSettings &settings)
+HttpRequest::HttpRequest(HttpServerSettings *settings)
 {
     status=waitForRequest;
     currentSize=0;
     expectedBodySize=0;
-    maxSize=settings.maxRequestSize;
-    maxMultiPartSize=settings.maxMultiPartSize;
+    maxSize=settings->maxRequestSize;
+    maxMultiPartSize=settings->maxMultiPartSize;
     tempFile=NULL;
 }
 

@@ -1,29 +1,25 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
 #ifndef HTTPCONNECTIONHANDLER_H
 #define HTTPCONNECTIONHANDLER_H
 
 #ifndef QT_NO_OPENSSL
    #include <QSslConfiguration>
 #endif
+
 #include <QTcpSocket>
 #include <QTimer>
 #include <QThread>
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 #include "httprequest.h"
 #include "httprequesthandler.h"
-#include "httplistenersettings.h"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
 /** Alias type definition, for compatibility to different Qt versions */
 #if QT_VERSION >= 0x050000
-    typedef qintptr tSocketDescriptor;
+    using tSocketDescriptor = qintptr;
 #else
-    typedef int tSocketDescriptor;
+    using tSocketDescriptor = int;
 #endif
 
 /** Alias for QSslConfiguration if OpenSSL is not supported */
@@ -46,7 +42,8 @@ namespace stefanfrings {
   The readTimeout value defines the maximum time to wait for a complete HTTP request.
   @see HttpRequest for description of config settings maxRequestSize and maxMultiPartSize.
 */
-class DECLSPEC HttpConnectionHandler : public QThread {
+class DECLSPEC HttpConnectionHandler : public QThread
+{
     Q_OBJECT
     Q_DISABLE_COPY(HttpConnectionHandler)
 
@@ -56,9 +53,9 @@ public:
       Constructor.
       @param settings Configuration settings of the HTTP webserver
       @param requestHandler Handler that will process each incoming HTTP request
-      @param sslConfiguration SSL (HTTPS) will be used if not NULL
+      @param sslConfiguration SSL (HTTPS) will be used if not `nullptr`
     */
-    HttpConnectionHandler(const HttpListenerSettings &settings, HttpRequestHandler* requestHandler, QSslConfiguration* sslConfiguration=NULL);
+    HttpConnectionHandler(HttpServerSettings *settings, HttpRequestHandler *requestHandler, QSslConfiguration *sslConfiguration = nullptr);
 
     /** Destructor */
     virtual ~HttpConnectionHandler();
@@ -72,25 +69,25 @@ public:
 private:
 
     /** Configuration settings */
-    HttpListenerSettings settings;
+    HttpServerSettings *settings = nullptr;
 
     /** TCP socket of the current connection  */
-    QTcpSocket* socket;
+    QTcpSocket *socket = nullptr;
 
     /** Time for read timeout detection */
     QTimer readTimer;
 
     /** Storage for the current incoming HTTP request */
-    HttpRequest* currentRequest;
+    HttpRequest *currentRequest = nullptr;
 
     /** Dispatches received requests to services */
-    HttpRequestHandler* requestHandler;
+    HttpRequestHandler *requestHandler = nullptr;
 
     /** This shows the busy-state from a very early time */
-    bool busy;
+    bool busy = false;
 
     /** Configuration for SSL */
-    QSslConfiguration* sslConfiguration;
+    QSslConfiguration *sslConfiguration = nullptr;
 
     /** Executes the threads own event loop */
     void run();

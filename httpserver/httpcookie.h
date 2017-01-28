@@ -8,7 +8,7 @@
 
 #include <QList>
 #include <QByteArray>
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 
 namespace stefanfrings {
 

@@ -5,9 +5,10 @@
 #include <QTimer>
 #include <QObject>
 #include <QMutex>
-#include "httpglobal.h"
-#include "httpconnectionhandler.h"
-#include "httplistenersettings.h"
+
+#include "HttpGlobal.hpp"
+#include "HttpConnectionHandler.hpp"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
@@ -46,9 +47,11 @@ namespace stefanfrings {
   @see HttpRequest for description of config settings maxRequestSize and maxMultiPartSize
 */
 
-class DECLSPEC HttpConnectionHandlerPool : public QObject {
+class DECLSPEC HttpConnectionHandlerPool : public QObject
+{
     Q_OBJECT
     Q_DISABLE_COPY(HttpConnectionHandlerPool)
+
 public:
 
     /**
@@ -57,21 +60,21 @@ public:
       @param requestHandler The handler that will process each received HTTP request.
       @warning The requestMapper gets deleted by the destructor of this pool
     */
-    HttpConnectionHandlerPool(const HttpListenerSettings &settings, HttpRequestHandler* requestHandler);
+    HttpConnectionHandlerPool(HttpServerSettings *settings, HttpRequestHandler* requestHandler);
 
     /** Destructor */
     virtual ~HttpConnectionHandlerPool();
 
     /** Get a free connection handler, or 0 if not available. */
-    HttpConnectionHandler* getConnectionHandler();
+    HttpConnectionHandler *getConnectionHandler();
 
 private:
 
     /** Settings for this pool */
-    HttpListenerSettings settings;
+    HttpServerSettings *settings = nullptr;
 
     /** Will be assigned to each Connectionhandler during their creation */
-    HttpRequestHandler* requestHandler;
+    HttpRequestHandler *requestHandler = nullptr;
 
     /** Pool of connection handlers */
     QList<HttpConnectionHandler*> pool;
@@ -83,7 +86,7 @@ private:
     QMutex mutex;
 
     /** The SSL configuration (certificate, key and other settings) */
-    QSslConfiguration* sslConfiguration;
+    QSslConfiguration *sslConfiguration = nullptr;
 
     /** Load SSL configuration */
     void loadSslConfig();

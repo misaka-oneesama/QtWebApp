@@ -9,7 +9,7 @@
 #include <QCache>
 #include <QMutex>
 #include <QSettings>
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 #include "httprequest.h"
 #include "httpresponse.h"
 #include "httprequesthandler.h"

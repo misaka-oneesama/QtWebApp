@@ -29,6 +29,11 @@ include(QtWebApp/{component}/{component}.pri)
 ```
 Include paths are setup accordingly and you can start developing instantly. Simple huh?
 
+<br>
+<br>
+
+--
+
 #### Notice regarding [御坂ーお姉さま](https://github.com/misaka-oneesama/misaka-oneesama)
 
 Report bugs against this repository only if you are sure it's QtWepApp's fault.

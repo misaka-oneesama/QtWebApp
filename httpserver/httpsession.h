@@ -9,7 +9,7 @@
 #include <QByteArray>
 #include <QVariant>
 #include <QReadWriteLock>
-#include "httpglobal.h"
+#include "HttpGlobal.hpp"
 
 namespace stefanfrings {
 
