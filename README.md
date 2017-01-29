@@ -43,4 +43,7 @@ Include paths are setup accordingly and you can start developing instantly. Simp
 
 #### Notice regarding [御坂ーお姉さま](https://github.com/misaka-oneesama/misaka-oneesama)
 
-Report bugs against this repository only if you are sure it's QtWepApp's fault.
+This fork is currently in co-development with the Discord™ bot misaka-oneesama as it is required to operate the Web UI.
+Report bugs against this repository only if you are sure it is really QtWepApp's fault.
+
+<sub>This notice will be removed if the bot is more finished. I hope to continue my work on this after that and reboot this amazing library. It hasn't been updated since years.</sub>
