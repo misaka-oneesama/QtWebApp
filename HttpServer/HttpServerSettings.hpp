@@ -95,4 +95,34 @@ private:
     static const QByteArray m_defaultCookieName;
 };
 
+class StaticFileControllerConfig
+{
+public:
+    StaticFileControllerConfig();
+    StaticFileControllerConfig(const QString &docRoot, const QString &encoding = QString("UTF-8"), const quint32 &maxAge = 60000U);
+    ~StaticFileControllerConfig();
+
+    void setDocRoot(const QString &path);
+    void setEncoding(const QString &encoding);
+    void setMaxAge(const quint32 &maxAge);
+    void setMaxCachedFileSize(const quint64 &maxCachedFileSize);
+    void setCacheTime(const quint32 &cacheTime);
+    void setCacheSize(const int &cacheSize);
+
+    const QString &docRoot() const;
+    const QString &encoding() const;
+    const quint32 &maxAge() const;
+    const quint64 &maxCachedFileSize() const;
+    const quint32 &cacheTime() const;
+    const int &cacheSize() const;
+
+private:
+    QString m_docRoot = QString("."); // process working directory
+    QString m_encoding = QString("UTF-8");
+    quint32 m_maxAge = 60000U;
+    quint64 m_maxCachedFileSize = 65536ULL;
+    quint32 m_cacheTime = 60000U;
+    int m_cacheSize = 1000000;
+};
+
 #endif // HTTPLISTENERSETTINGS_HPP

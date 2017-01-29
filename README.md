@@ -10,7 +10,8 @@ Fork of [**QtWebApp**](http://stefanfrings.de/qtwebapp/index-en.html) by [Stefan
  - Simple to include into your project. (`qmake`)
  - SSL support
  - HTML templatizer
- - Supports Cookies (req/res)
+ - Supports Cookies
+ - Static File Controller and MIME database support
 
 ## How to use
 
@@ -18,7 +19,7 @@ Only `qmake` is supported right now. There are no plans to add CMake support yet
 
 There are 4 components
 
- - `httpserver` ─ the actual server and tcp socket listener
+ - `HttpServer` ─ the actual Server and TCP Socket Listener
  - `templateengine` ─ HTML templatizer (shares some similarities with Handlebars?)
  - `logging` ─ multithreaded non-blocking file logger (thread-safe)
  - `qtservice` ─ UNIX daemon and Windows Service wrapper to send app in the background
@@ -31,7 +32,7 @@ Include paths are setup accordingly and you can start developing instantly. Simp
 
 ## Planned Features
 
- - User-Agent parser (`httpserver`) <br>
+ - User-Agent parser (`HttpServer`) <br>
    Easily check against platforms and browsers without using regular expressions against the `User-Agent` HTTP header. <br>
    For now use `request.getHeader("user-agent")` to obtain the client sent user agent.
 

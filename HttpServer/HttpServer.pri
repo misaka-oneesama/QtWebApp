@@ -19,7 +19,7 @@ HEADERS += $$PWD/HttpGlobal.hpp \
            $$PWD/HttpRequestHandler.hpp \
            $$PWD/HttpSession.hpp \
            $$PWD/HttpSessionStore.hpp \
-           $$PWD/staticfilecontroller.h
+           $$PWD/StaticFileController.hpp
 
 SOURCES += $$PWD/HttpGlobal.cpp \
            $$PWD/HttpListener.cpp \
@@ -32,4 +32,4 @@ SOURCES += $$PWD/HttpGlobal.cpp \
            $$PWD/HttpRequestHandler.cpp \
            $$PWD/HttpSession.cpp \
            $$PWD/HttpSessionStore.cpp \
-           $$PWD/staticfilecontroller.cpp
+           $$PWD/StaticFileController.cpp

@@ -1,18 +1,14 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
-#ifndef STATICFILECONTROLLER_H
-#define STATICFILECONTROLLER_H
+#ifndef STATICFILECONTROLLER_HPP
+#define STATICFILECONTROLLER_HPP
 
 #include <QCache>
 #include <QMutex>
-#include <QSettings>
+
 #include "HttpGlobal.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
 #include "HttpRequestHandler.hpp"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
@@ -43,16 +39,21 @@ namespace stefanfrings {
   received a related HTTP request.
 */
 
-class DECLSPEC StaticFileController : public HttpRequestHandler  {
+class DECLSPEC StaticFileController : public HttpRequestHandler
+{
     Q_OBJECT
     Q_DISABLE_COPY(StaticFileController)
+
 public:
 
     /** Constructor */
-    StaticFileController(QSettings* settings, QObject* parent = NULL);
+    StaticFileController(StaticFileControllerConfig *settings, QObject *parent = nullptr);
 
     /** Generates the response */
-    void service(HttpRequest& request, HttpResponse& response);
+    void service(HttpRequest &request, HttpResponse &response);
+
+    /** Sets the content type encoding header */
+    void setContentTypeEncoding(const QString &encoding);
 
 private:
 
@@ -63,7 +64,7 @@ private:
     QString docroot;
 
     /** Maximum age of files in the browser cache */
-    int maxAge;
+    quint32 maxAge;
 
     struct CacheEntry {
         QByteArray document;
@@ -72,21 +73,21 @@ private:
     };
 
     /** Timeout for each cached file */
-    int cacheTimeout;
+    quint32 cacheTimeout;
 
     /** Maximum size of files in cache, larger files are not cached */
-    int maxCachedFileSize;
+    quint64 maxCachedFileSize;
 
     /** Cache storage */
-    QCache<QString,CacheEntry> cache;
+    QCache<QString, CacheEntry> cache;
 
     /** Used to synchronize cache access for threads */
     QMutex mutex;
 
-    /** Set a content-type header in the response depending on the ending of the filename */
-    void setContentType(QString file, HttpResponse& response) const;
+    /** Set a content-type header in the response depending on the mime type of the file */
+    void setContentType(const QString &file, HttpResponse &response) const;
 };
 
 } // end of namespace
 
-#endif // STATICFILECONTROLLER_H
+#endif // STATICFILECONTROLLER_HPP
