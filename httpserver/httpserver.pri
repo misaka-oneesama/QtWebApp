@@ -15,20 +15,21 @@ HEADERS += $$PWD/HttpGlobal.hpp \
            $$PWD/HttpConnectionHandlerPool.hpp \
            $$PWD/HttpRequest.hpp \
            $$PWD/HttpResponse.hpp \
-           $$PWD/httpcookie.h \
-           $$PWD/httprequesthandler.h \
-           $$PWD/httpsession.h \
-           $$PWD/httpsessionstore.h \
+           $$PWD/HttpCookie.hpp \
+           $$PWD/HttpRequestHandler.hpp \
+           $$PWD/HttpSession.hpp \
+           $$PWD/HttpSessionStore.hpp \
            $$PWD/staticfilecontroller.h
 
 SOURCES += $$PWD/HttpGlobal.cpp \
            $$PWD/HttpListener.cpp \
+           $$PWD/HttpServerSettings.cpp \
            $$PWD/HttpConnectionHandler.cpp \
            $$PWD/HttpConnectionHandlerPool.cpp \
            $$PWD/HttpRequest.cpp \
            $$PWD/HttpResponse.cpp \
-           $$PWD/httpcookie.cpp \
-           $$PWD/httprequesthandler.cpp \
-           $$PWD/httpsession.cpp \
-           $$PWD/httpsessionstore.cpp \
+           $$PWD/HttpCookie.cpp \
+           $$PWD/HttpRequestHandler.cpp \
+           $$PWD/HttpSession.cpp \
+           $$PWD/HttpSessionStore.cpp \
            $$PWD/staticfilecontroller.cpp

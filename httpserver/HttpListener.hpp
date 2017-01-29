@@ -7,7 +7,7 @@
 #include "HttpGlobal.hpp"
 #include "HttpConnectionHandler.hpp"
 #include "HttpConnectionHandlerPool.hpp"
-#include "httprequesthandler.h"
+#include "HttpRequestHandler.hpp"
 #include "HttpServerSettings.hpp"
 
 namespace stefanfrings {

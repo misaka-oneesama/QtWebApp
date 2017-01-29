@@ -1,5 +1,5 @@
 #include "HttpRequest.hpp"
-#include "httpcookie.h"
+#include "HttpCookie.hpp"
 
 #include <QList>
 #include <QDir>

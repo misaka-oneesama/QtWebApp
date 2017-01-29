@@ -12,7 +12,7 @@
 #include "HttpGlobal.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
-#include "httprequesthandler.h"
+#include "HttpRequestHandler.hpp"
 
 namespace stefanfrings {
 

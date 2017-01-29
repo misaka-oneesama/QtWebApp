@@ -1,20 +1,16 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
-#ifndef HTTPSESSIONSTORE_H
-#define HTTPSESSIONSTORE_H
+#ifndef HTTPSESSIONSTORE_HPP
+#define HTTPSESSIONSTORE_HPP
 
 #include <QObject>
-#include <QSettings>
 #include <QMap>
 #include <QTimer>
 #include <QMutex>
+
 #include "HttpGlobal.hpp"
-#include "httpsession.h"
+#include "HttpSession.hpp"
 #include "HttpResponse.hpp"
 #include "HttpRequest.hpp"
+#include "HttpServerSettings.hpp"
 
 namespace stefanfrings {
 
@@ -33,13 +29,15 @@ namespace stefanfrings {
   </pre></code>
 */
 
-class DECLSPEC HttpSessionStore : public QObject {
+class DECLSPEC HttpSessionStore : public QObject
+{
     Q_OBJECT
     Q_DISABLE_COPY(HttpSessionStore)
+
 public:
 
     /** Constructor. */
-    HttpSessionStore(QSettings* settings, QObject* parent=NULL);
+    HttpSessionStore(HttpSessionStoreSettings *settings, QObject *parent = nullptr);
 
     /** Destructor */
     virtual ~HttpSessionStore();
@@ -53,7 +51,7 @@ public:
        @param response Used to get and set the new session cookie
        @return Empty string, if there is no valid session.
     */
-    QByteArray getSessionId(HttpRequest& request, HttpResponse& response);
+    QByteArray getSessionId(HttpRequest &request, HttpResponse &response);
 
     /**
        Get the session of a HTTP request, eventually create a new one.
@@ -65,7 +63,7 @@ public:
        @return If autoCreate is disabled, the function returns a null session if there is no session.
        @see HttpSession::isNull()
     */
-    HttpSession getSession(HttpRequest& request, HttpResponse& response, bool allowCreate=true);
+    HttpSession getSession(HttpRequest &request, HttpResponse &response, bool allowCreate = true);
 
     /**
        Get a HTTP session by it's ID number.
@@ -74,19 +72,20 @@ public:
        @param id ID number of the session
        @see HttpSession::isNull()
     */
-    HttpSession getSession(const QByteArray id);
+    HttpSession getSession(const QByteArray &id);
 
     /** Delete a session */
-    void removeSession(HttpSession session);
+    void removeSession(const HttpSession &session);
 
 protected:
+
     /** Storage for the sessions */
-    QMap<QByteArray,HttpSession> sessions;
+    QMap<QByteArray, HttpSession> sessions;
 
 private:
 
     /** Configuration settings */
-    QSettings* settings;
+    HttpSessionStoreSettings *settings = nullptr;
 
     /** Timer to remove expired sessions */
     QTimer cleanupTimer;
@@ -95,7 +94,7 @@ private:
     QByteArray cookieName;
 
     /** Time when sessions expire (in ms)*/
-    int expirationTime;
+    qint64 expirationTime;
 
     /** Used to synchronize threads */
     QMutex mutex;
@@ -108,4 +107,4 @@ private slots:
 
 } // end of namespace
 
-#endif // HTTPSESSIONSTORE_H
+#endif // HTTPSESSIONSTORE_HPP

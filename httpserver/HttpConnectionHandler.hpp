@@ -8,9 +8,10 @@
 #include <QTcpSocket>
 #include <QTimer>
 #include <QThread>
+
 #include "HttpGlobal.hpp"
 #include "HttpRequest.hpp"
-#include "httprequesthandler.h"
+#include "HttpRequestHandler.hpp"
 #include "HttpServerSettings.hpp"
 
 namespace stefanfrings {

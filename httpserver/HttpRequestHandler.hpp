@@ -1,10 +1,5 @@
-/**
-  @file
-  @author Stefan Frings
-*/
-
-#ifndef HTTPREQUESTHANDLER_H
-#define HTTPREQUESTHANDLER_H
+#ifndef HTTPREQUESTHANDLER_HPP
+#define HTTPREQUESTHANDLER_HPP
 
 #include "HttpGlobal.hpp"
 #include "HttpRequest.hpp"
@@ -24,16 +19,18 @@ namespace stefanfrings {
    @see StaticFileController which delivers static local files.
 */
 
-class DECLSPEC HttpRequestHandler : public QObject {
+class DECLSPEC HttpRequestHandler : public QObject
+{
     Q_OBJECT
     Q_DISABLE_COPY(HttpRequestHandler)
+
 public:
 
     /**
      * Constructor.
      * @param parent Parent object.
      */
-    HttpRequestHandler(QObject* parent=NULL);
+    HttpRequestHandler(QObject *parent = nullptr);
 
     /** Destructor */
     virtual ~HttpRequestHandler();
@@ -44,10 +41,10 @@ public:
       @param response Must be used to return the response
       @warning This method must be thread safe
     */
-    virtual void service(HttpRequest& request, HttpResponse& response);
+    virtual void service(HttpRequest &request, HttpResponse &response);
 
 };
 
 } // end of namespace
 
-#endif // HTTPREQUESTHANDLER_H
+#endif // HTTPREQUESTHANDLER_HPP

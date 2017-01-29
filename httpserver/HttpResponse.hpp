@@ -6,7 +6,7 @@
 #include <QTcpSocket>
 
 #include "HttpGlobal.hpp"
-#include "httpcookie.h"
+#include "HttpCookie.hpp"
 
 namespace stefanfrings {
 
