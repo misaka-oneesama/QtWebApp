@@ -4,7 +4,7 @@
 
 #include <QCoreApplication>
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpListener::HttpListener(HttpServerSettings *settings, HttpRequestHandler* requestHandler, QObject *parent)
     : QTcpServer(parent)
@@ -89,3 +89,5 @@ void HttpListener::incomingConnection(tSocketDescriptor socketDescriptor)
         socket->disconnectFromHost();
     }
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

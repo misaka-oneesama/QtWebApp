@@ -10,7 +10,7 @@
 #include "HttpRequestHandler.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   Delivers static files. It is usually called by the applications main request handler when
@@ -88,6 +88,6 @@ private:
     void setContentType(const QString &file, HttpResponse &response) const;
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // STATICFILECONTROLLER_HPP

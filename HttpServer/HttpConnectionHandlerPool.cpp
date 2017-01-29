@@ -7,7 +7,7 @@
 
 #include "HttpConnectionHandlerPool.hpp"
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpConnectionHandlerPool::HttpConnectionHandlerPool(HttpServerSettings *settings, HttpRequestHandler *requestHandler)
     : QObject()
@@ -136,3 +136,5 @@ void HttpConnectionHandlerPool::loadSslConfig()
          #endif
     }
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

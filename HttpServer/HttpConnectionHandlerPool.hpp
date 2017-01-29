@@ -10,7 +10,7 @@
 #include "HttpConnectionHandler.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   Pool of http connection handlers. The size of the pool grows and
@@ -98,6 +98,6 @@ private slots:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPCONNECTIONHANDLERPOOL_HPP

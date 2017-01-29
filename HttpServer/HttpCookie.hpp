@@ -6,7 +6,7 @@
 
 #include "HttpGlobal.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   HTTP cookie as defined in RFC 2109. This class can also parse
@@ -120,6 +120,6 @@ private:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPCOOKIE_HPP

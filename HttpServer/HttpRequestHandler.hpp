@@ -5,7 +5,7 @@
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
    The request handler generates a response for each HTTP request. Web Applications
@@ -45,6 +45,6 @@ public:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPREQUESTHANDLER_HPP

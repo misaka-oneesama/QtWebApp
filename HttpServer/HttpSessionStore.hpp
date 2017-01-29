@@ -12,7 +12,7 @@
 #include "HttpRequest.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   Stores HTTP sessions and deletes them when they have expired.
@@ -105,6 +105,6 @@ private slots:
     void sessionTimerEvent();
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPSESSIONSTORE_HPP

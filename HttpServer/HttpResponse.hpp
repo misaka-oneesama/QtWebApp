@@ -8,7 +8,7 @@
 #include "HttpGlobal.hpp"
 #include "HttpCookie.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   This object represents a HTTP response, used to return something to the web client.
@@ -156,6 +156,6 @@ private:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPRESPONSE_HPP

@@ -4,7 +4,7 @@
 #include <QList>
 #include <QDir>
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpRequest::HttpRequest(HttpServerSettings *settings)
 {
@@ -641,3 +641,5 @@ QHostAddress HttpRequest::getPeerAddress() const
 {
     return this->peerAddress;
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

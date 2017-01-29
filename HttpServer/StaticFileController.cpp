@@ -6,7 +6,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 StaticFileController::StaticFileController(StaticFileControllerConfig *settings, QObject *parent)
     : HttpRequestHandler(parent)
@@ -159,3 +159,5 @@ void StaticFileController::setContentType(const QString &fileName, HttpResponse 
 
     mimeType.clear();
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

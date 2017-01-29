@@ -10,7 +10,7 @@
 #include "HttpRequestHandler.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   Listens for incoming TCP connections and and passes all incoming HTTP requests to your implementation of HttpRequestHandler,
@@ -94,6 +94,6 @@ signals:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPLISTENER_HPP

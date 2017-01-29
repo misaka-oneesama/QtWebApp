@@ -1,6 +1,6 @@
 #include "HttpResponse.hpp"
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpResponse::HttpResponse(QTcpSocket *socket)
 {
@@ -196,3 +196,5 @@ bool HttpResponse::isConnected() const
 {
     return this->socket->isOpen();
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

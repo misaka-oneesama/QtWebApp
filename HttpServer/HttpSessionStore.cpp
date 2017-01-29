@@ -3,7 +3,7 @@
 #include <QDateTime>
 #include <QUuid>
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpSessionStore::HttpSessionStore(HttpSessionStoreSettings *settings, QObject *parent)
     : QObject(parent)
@@ -136,3 +136,5 @@ void HttpSessionStore::removeSession(const HttpSession &session)
     this->sessions.remove(session.getId());
     this->mutex.unlock();
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

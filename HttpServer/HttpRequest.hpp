@@ -12,7 +12,7 @@
 #include "HttpGlobal.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   This object represents a single HTTP request. It reads the request
@@ -237,6 +237,6 @@ private:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPREQUEST_HPP

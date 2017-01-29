@@ -1,7 +1,7 @@
 #include "HttpConnectionHandler.hpp"
 #include "HttpResponse.hpp"
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpConnectionHandler::HttpConnectionHandler(HttpServerSettings *settings, HttpRequestHandler *requestHandler, QSslConfiguration *sslConfiguration)
     : QThread()
@@ -265,3 +265,5 @@ void HttpConnectionHandler::read()
         }
     }
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

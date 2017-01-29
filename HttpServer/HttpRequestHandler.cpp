@@ -1,6 +1,6 @@
 #include "HttpRequestHandler.hpp"
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpRequestHandler::HttpRequestHandler(QObject *parent)
     : QObject(parent)
@@ -19,3 +19,5 @@ void HttpRequestHandler::service(HttpRequest &request, HttpResponse &response)
     response.setStatus(501, "Not Implemented");
     response.write("501 Not Implemented", true);
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

@@ -3,7 +3,7 @@
 #include <QDateTime>
 #include <QUuid>
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpSession::HttpSession(bool canStore)
 {
@@ -196,3 +196,5 @@ void HttpSession::setLastAccess()
         this->dataPtr->lock.unlock();
     }
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

@@ -7,7 +7,7 @@
 
 #include "HttpGlobal.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /**
   This class stores data for a single HTTP session.
@@ -112,6 +112,6 @@ private:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPSESSION_HPP

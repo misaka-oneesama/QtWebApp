@@ -1,6 +1,6 @@
 #include "HttpCookie.hpp"
 
-using namespace stefanfrings;
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 HttpCookie::HttpCookie()
 {
@@ -293,3 +293,5 @@ QList<QByteArray> HttpCookie::splitCSV(const QByteArray &source)
 
     return list;
 }
+
+QTWEBAPP_HTTPSERVER_NAMESPACE_END

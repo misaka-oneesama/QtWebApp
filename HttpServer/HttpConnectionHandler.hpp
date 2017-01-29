@@ -14,7 +14,7 @@
 #include "HttpRequestHandler.hpp"
 #include "HttpServerSettings.hpp"
 
-namespace stefanfrings {
+QTWEBAPP_HTTPSERVER_NAMESPACE_BEGIN
 
 /** Alias type definition, for compatibility to different Qt versions */
 #if QT_VERSION >= 0x050000
@@ -117,6 +117,6 @@ private slots:
 
 };
 
-} // end of namespace
+QTWEBAPP_HTTPSERVER_NAMESPACE_END
 
 #endif // HTTPCONNECTIONHANDLER_HPP

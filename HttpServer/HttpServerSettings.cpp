@@ -1,5 +1,7 @@
 #include "HttpServerSettings.hpp"
 
+QTWEBAPP_NAMESPACE_BEGIN
+
 const QByteArray HttpSessionStoreSettings::m_defaultCookieName = QByteArray("sessionid");
 
 StaticFileControllerConfig::StaticFileControllerConfig()
@@ -79,3 +81,5 @@ const int &StaticFileControllerConfig::cacheSize() const
 {
     return this->m_cacheSize;
 }
+
+QTWEBAPP_NAMESPACE_END

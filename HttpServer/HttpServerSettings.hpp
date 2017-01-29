@@ -5,6 +5,10 @@
 #include <QString>
 #include <QByteArray>
 
+#include "HttpGlobal.hpp"
+
+QTWEBAPP_NAMESPACE_BEGIN
+
 struct HttpServerSettings
 {
     QLatin1String host;
@@ -124,5 +128,7 @@ private:
     quint32 m_cacheTime = 60000U;
     int m_cacheSize = 1000000;
 };
+
+QTWEBAPP_NAMESPACE_END
 
 #endif // HTTPLISTENERSETTINGS_HPP
