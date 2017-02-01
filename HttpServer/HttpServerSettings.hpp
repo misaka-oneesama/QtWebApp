@@ -11,7 +11,7 @@ QTWEBAPP_NAMESPACE_BEGIN
 
 struct HttpServerSettings
 {
-    QLatin1String host;
+    QString host;
     quint16 port;
     quint32 minThreads = 4U;
     quint32 maxThreads = 100U;
