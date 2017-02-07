@@ -26,9 +26,11 @@ There are 4 components
 
 To include a component to your project add this to your `.pro` file.
 ```
-include(QtWebApp/{component}/{component}.pri)
+include(QtWebApp/{component}.pri)
 ```
 Include paths are setup accordingly and you can start developing instantly. Simple huh?
+
+Include files in your project like so: `<QtWebApp/{component}/...>`
 
 ## Planned Features
 

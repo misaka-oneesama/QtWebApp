@@ -60,7 +60,7 @@ void HttpListener::close()
 
 void HttpListener::incomingConnection(tSocketDescriptor socketDescriptor)
 {
-#ifdef SUPERVERBOSE
+#ifdef QTWEBAPP_SUPERVERBOSE
     qDebug("HttpListener: New connection");
 #endif
 

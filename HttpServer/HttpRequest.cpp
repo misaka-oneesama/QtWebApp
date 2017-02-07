@@ -17,7 +17,7 @@ HttpRequest::HttpRequest(HttpServerSettings *settings)
 
 void HttpRequest::readRequest(QTcpSocket *socket)
 {
-    #ifdef SUPERVERBOSE
+    #ifdef QTWEBAPP_SUPERVERBOSE
         qDebug("HttpRequest: read request");
     #endif
 
@@ -27,7 +27,7 @@ void HttpRequest::readRequest(QTcpSocket *socket)
 
     if (!this->lineBuffer.contains('\r') && !this->lineBuffer.contains('\n'))
     {
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: collecting more parts until line break");
         #endif
 
@@ -59,7 +59,7 @@ void HttpRequest::readRequest(QTcpSocket *socket)
 
 void HttpRequest::readHeader(QTcpSocket *socket)
 {
-    #ifdef SUPERVERBOSE
+    #ifdef QTWEBAPP_SUPERVERBOSE
         qDebug("HttpRequest: read header");
     #endif
 
@@ -69,7 +69,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
 
     if (!this->lineBuffer.contains('\r') && !this->lineBuffer.contains('\n'))
     {
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: collecting more parts until line break");
         #endif
 
@@ -87,7 +87,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
         QByteArray value = newData.mid(colon + 1).trimmed();
         this->headers.insert(this->currentHeader, value);
 
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: received header %s: %s",currentHeader.data(),value.data());
         #endif
     }
@@ -95,7 +95,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
     else if (!newData.isEmpty())
     {
         // received another line - belongs to the previous header
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: read additional line of header");
         #endif
 
@@ -109,7 +109,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
     else
     {
         // received an empty line - end of headers reached
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: headers completed");
         #endif
 
@@ -137,7 +137,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
 
         if (this->expectedBodySize == 0)
         {
-            #ifdef SUPERVERBOSE
+            #ifdef QTWEBAPP_SUPERVERBOSE
                 qDebug("HttpRequest: expect no body");
             #endif
 
@@ -158,7 +158,7 @@ void HttpRequest::readHeader(QTcpSocket *socket)
 
         else
         {
-            #ifdef SUPERVERBOSE
+            #ifdef QTWEBAPP_SUPERVERBOSE
                 qDebug("HttpRequest: expect %i bytes body",expectedBodySize);
             #endif
 
@@ -174,7 +174,7 @@ void HttpRequest::readBody(QTcpSocket *socket)
     if (this->boundary.isEmpty())
     {
         // normal body, no multipart
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: receive body");
         #endif
 
@@ -192,7 +192,7 @@ void HttpRequest::readBody(QTcpSocket *socket)
     else
     {
         // multipart body, store into temp file
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: receiving multipart body");
         #endif
 
@@ -225,7 +225,7 @@ void HttpRequest::readBody(QTcpSocket *socket)
 
         else if (fileSize >= this->expectedBodySize)
         {
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: received whole multipart body");
         #endif
 
@@ -244,7 +244,7 @@ void HttpRequest::readBody(QTcpSocket *socket)
 
 void HttpRequest::decodeRequestParams()
 {
-    #ifdef SUPERVERBOSE
+    #ifdef QTWEBAPP_SUPERVERBOSE
         qDebug("HttpRequest: extract and decode request parameters");
     #endif
 
@@ -295,7 +295,7 @@ void HttpRequest::decodeRequestParams()
 
 void HttpRequest::extractCookies()
 {
-    #ifdef SUPERVERBOSE
+    #ifdef QTWEBAPP_SUPERVERBOSE
         qDebug("HttpRequest: extract cookies");
     #endif
 
@@ -304,7 +304,7 @@ void HttpRequest::extractCookies()
         QList<QByteArray> list = HttpCookie::splitCSV(cookieStr);
         for (auto&& part : list)
         {
-            #ifdef SUPERVERBOSE
+            #ifdef QTWEBAPP_SUPERVERBOSE
                 qDebug("HttpRequest: found cookie %s",part.data());
             #endif
 
@@ -458,7 +458,7 @@ void HttpRequest::parseMultiPartFile()
     bool finished = false;
     while (!this->tempFile->atEnd() && !finished && !this->tempFile->error())
     {
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: reading multpart headers");
         #endif
 
@@ -488,7 +488,7 @@ void HttpRequest::parseMultiPartFile()
                         fileName = line.mid(start + 11, end - start - 11);
                     }
 
-                    #ifdef SUPERVERBOSE
+                    #ifdef QTWEBAPP_SUPERVERBOSE
                         qDebug("HttpRequest: multipart field=%s, filename=%s", fieldName.constData(), fileName.constData());
                     #endif
                 }
@@ -505,7 +505,7 @@ void HttpRequest::parseMultiPartFile()
             }
         }
 
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpRequest: reading multpart data");
         #endif
 
@@ -531,7 +531,7 @@ void HttpRequest::parseMultiPartFile()
                 else if (!fileName.isEmpty() && !fieldName.isEmpty())
                 {
                     // last field was a file
-                    #ifdef SUPERVERBOSE
+                    #ifdef QTWEBAPP_SUPERVERBOSE
                         qDebug("HttpRequest: finishing writing to uploaded file");
                     #endif
 
@@ -586,7 +586,7 @@ void HttpRequest::parseMultiPartFile()
         qCritical("HttpRequest: cannot read temp file, %s", qUtf8Printable(this->tempFile->errorString()));
     }
 
-    #ifdef SUPERVERBOSE
+    #ifdef QTWEBAPP_SUPERVERBOSE
         qDebug("HttpRequest: finished parsing multipart temp file");
     #endif
 }

@@ -145,7 +145,7 @@ void HttpConnectionHandler::read()
     // The loop adds support for HTTP pipelinig
     while (this->socket->bytesAvailable())
     {
-        #ifdef SUPERVERBOSE
+        #ifdef QTWEBAPP_SUPERVERBOSE
             qDebug("HttpConnectionHandler (%p): read input",this);
         #endif
 
