@@ -93,7 +93,7 @@ void StaticFileController::service(HttpRequest &request, HttpResponse &response)
                 entry = new CacheEntry();
                 while (!file.atEnd() && !file.error())
                 {
-                    QByteArray buffer = file.read(65536);
+                    QByteArray buffer = file.readAll();
                     response.write(buffer);
                     entry->document.append(buffer);
                 }
@@ -111,7 +111,7 @@ void StaticFileController::service(HttpRequest &request, HttpResponse &response)
                 // Return the file content, do not store in cache
                 while (!file.atEnd() && !file.error())
                 {
-                    response.write(file.read(65536));
+                    response.write(file.readAll());
                 }
             }
 
